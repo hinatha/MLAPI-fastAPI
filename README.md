@@ -5,16 +5,16 @@
 ### Routes
 
 ```bash
-Endpoint           Methods  Rule
------------------  -------  -----------------------
-api.health         GET      /v1/health
-api.file_upload    POST     /v1/file-upload
-api.probabilities  POST     /v1/probabilities
+Endpoint              Methods  Rule
+-----------------     -------  -----------------------
+routers.image          GET      /images
+routers.image          POST     /images
+routers.probabilities  POST     /probabilities/{file_id}
 ```
 
 ### User Story
 
-- User can check health status.
+- User can show pictures' names.
 - User can upload picture files.
 - User can see result of number predict.
 
