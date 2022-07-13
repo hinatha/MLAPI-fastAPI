@@ -1,8 +1,10 @@
 from pydantic import BaseModel, Field
 
-class ImageList(BaseModel):
+class FileIdModel(BaseModel):
     file_id: str
-    filename: str = Field(None, example="0.jpg")
+
+class ImageList(FileIdModel):
+    filename: str = Field(None)
     
     class Config:
         orm_mode = True

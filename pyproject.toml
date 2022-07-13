@@ -11,6 +11,8 @@ uvicorn = {extras = ["standard"], version = "^0.18.1"}
 python-multipart = "^0.0.5"
 SQLAlchemy = "^1.4.39"
 aiomysql = "^0.1.1"
+boto3 = "^1.24.27"
+Werkzeug = "^2.1.2"
 
 [tool.poetry.dev-dependencies]
 

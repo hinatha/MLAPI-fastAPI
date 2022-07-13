@@ -8,7 +8,7 @@ class ImageInfo(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     file_id = Column(String(255))
-    title = Column(String(1024))
+    filename = Column(String(1024))
 
     def __repr__(self):
         return f"<Filename {self.filename}>"
