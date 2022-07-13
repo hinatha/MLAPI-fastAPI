@@ -29,7 +29,7 @@ async def insert_filedata(
     dir_name = settings.folder_name
     region = settings.aws_default_region
 
-    print("Execute make bucket")
+    # Execute make bucket
     try:
         s3_client.create_bucket(
             Bucket=bucket_name,
@@ -40,7 +40,7 @@ async def insert_filedata(
     except:
         pass
 
-    print("Execute files upload")
+    # Execute files upload to S3
     for file in files:
         filename = secure_filename(file.filename)
         image_info = ImageInfo(file_id=file_id, filename=filename)
@@ -49,5 +49,5 @@ async def insert_filedata(
         s3_client.put_object(Body=file.file, Bucket=bucket_name, Key=key)
 
     await db.commit()
-    FileIdModel.file_id = file_id # todo
-    return FileIdModel
+    file_id_json = {"file_id": file_id}
+    return file_id_json
