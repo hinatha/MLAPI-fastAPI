@@ -1,4 +1,5 @@
 from pydantic import BaseSettings
+from functools import lru_cache
 
 
 class Settings(BaseSettings):
@@ -10,3 +11,8 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
+
+# Setting S3 info
+@lru_cache()
+def get_settings():
+    return Settings()
