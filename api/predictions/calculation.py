@@ -21,7 +21,6 @@ async def evaluate_probs(file_id: image_schema.FileIdModel, db: AsyncSession) ->
     X_true = [int(filename[:1]) for filename in filenames]
     X_true = np.array(X_true)
 
-    # TODO: Expected 2D array, got scalar array instead: array=<coroutine object get_shrinked_img at 0xffff9c12bd40>.
     predicted_result = model.predict(img_test).tolist()
     accuracy = model.score(img_test, X_true).tolist()
     observed_result = X_true.tolist()

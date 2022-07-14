@@ -9,7 +9,7 @@ import api.schemas.ml as ml_schema
 import api.schemas.image as image_schema
 
 
-async def get_grayscale(filenames: List[image_schema.FileNameModel]) -> bytes:
+def get_grayscale(filenames: List[image_schema.FileNameModel]) -> bytes:
     """読み込んだ手書き文字画像の色をグレースケールに変換する関数 (グレースケールは色の濃淡の明暗を分ける技法のことです。)"""
     settings = get_settings()
     s3_client = boto3.client("s3")
@@ -22,7 +22,7 @@ async def get_grayscale(filenames: List[image_schema.FileNameModel]) -> bytes:
         yield img
 
 
-async def shrink_image(
+def shrink_image(
     img, offset=5, crop_size: int = 8, pixel_size: int = 255, max_size: int = 16
 ):
     """画像サイズを8x8ピクセルのサイズに統一し、明るさも16階調のグレイスケールで白黒に変換する関数"""
@@ -54,7 +54,7 @@ async def shrink_image(
     return img_data16
 
 
-async def get_shrinked_img(filenames: List[image_schema.FileNameModel]) -> List[int]:
+def get_shrinked_img(filenames: List[image_schema.FileNameModel]) -> List[int]:
     """モデルにインプットする画像の数値データのリストを作成する関数"""
     img_test = np.empty((0, 64))
     for img in get_grayscale(filenames):
