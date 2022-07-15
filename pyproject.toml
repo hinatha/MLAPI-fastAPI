@@ -13,6 +13,9 @@ SQLAlchemy = "^1.4.39"
 aiomysql = "^0.1.1"
 boto3 = "^1.24.27"
 Werkzeug = "^2.1.2"
+numpy = "^1.23.1"
+Pillow = "^9.2.0"
+scikit-learn = "^1.1.1"
 
 [tool.poetry.dev-dependencies]
 

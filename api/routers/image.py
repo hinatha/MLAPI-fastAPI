@@ -4,7 +4,6 @@ from fastapi import APIRouter, UploadFile, File, Depends
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-
 from api.db import get_db
 import api.preparations.image as image_preparation
 import api.schemas.image as image_schema

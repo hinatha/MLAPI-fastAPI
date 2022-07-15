@@ -3,14 +3,13 @@ import boto3
 from fastapi import UploadFile, Depends
 from typing import List
 
-from functools import lru_cache
 from werkzeug.utils import secure_filename
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.engine import Result
 
-from api import config
+from api.config import get_settings
 import api.models.image as image_model
 import api.schemas.image as image_schema
 
@@ -26,12 +25,6 @@ async def get_images(db: AsyncSession) -> List[image_schema.ImageList]:
         )
     )
     return result.all()
-
-
-# Setting S3 info
-@lru_cache()
-def get_settings():
-    return config.Settings()
 
 
 # Post image file, file name as metadata and return file_id
@@ -69,3 +62,11 @@ async def insert_filedata(files: list[UploadFile], db: AsyncSession) -> image_sc
 
     file_id_json = {"file_id": file_id}
     return file_id_json
+
+
+async def extract_filenames(file_id: image_schema.FileIdModel, db: AsyncSession) -> List[image_schema.FileNameModel]:
+    """手書き文字画像のファイル名をデータベースから取得"""
+    img_obj = await (db.execute(select(image_model.ImageInfo.filename).filter(image_model.ImageInfo.file_id == file_id)))
+    filenames = [img.filename for img in img_obj if img.filename]
+
+    return filenames
