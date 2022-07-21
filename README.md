@@ -106,3 +106,14 @@ mysql> DESCRIBE image_info;
 +----------+---------------+------+-----+---------+----------------+
 3 rows in set (0.20 sec)
 ```
+
+## Testing
+
+### Execute test command
+
+```bash
+docker-compose run --entrypoint "poetry run pytest --asyncio-mode=auto" ml-api 
+```
+
+FYI:
+https://github.com/pytest-dev/pytest-asyncio
