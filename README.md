@@ -18,9 +18,15 @@ routers.probabilities  POST     /probabilities/{file_id}
 - User can upload picture files.
 - User can see result of number predict.
 
+## Steps to take when creating ml-api
+
+1. Create analysis code in jupyter-lab
+2. Analysis code to production code in jupyter-lab
+3. Make production code api in .py file
+
 ## Usage
 
-### Make learned MLapi
+### Make learned pickle file
 
 Execute below code in analysis.ipynb
 
@@ -105,4 +111,15 @@ mysql> DESCRIBE image_info;
 | filename | varchar(1024) | YES  |     | NULL    |                |
 +----------+---------------+------+-----+---------+----------------+
 3 rows in set (0.20 sec)
+```
+
+## Unit test
+
+### Execute test command
+
+FYI:
+https://github.com/pytest-dev/pytest-asyncio
+
+```bash
+docker-compose run --entrypoint "poetry run pytest --asyncio-mode=auto" ml-api 
 ```
